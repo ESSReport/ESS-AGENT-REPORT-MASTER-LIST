@@ -3,64 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shops Balance Dashboard</title>
-
-  <!-- ✅ External CSS file -->
-  <link rel="stylesheet" href="styles.css">
-
-  <!-- 🔒 Simple PIN Protection -->
-  <script>
-    // Change this PIN to your own
-    const encodedPass = "MTEwMTIwMjU="; // base64 for "11012025"
-    const entered = prompt("Enter PIN to access dashboard:");
-
-    if (btoa(entered) !== encodedPass) {
-      document.body.innerHTML = `
-        <h2 style="color:red;text-align:center;margin-top:40px;">
-          Access Denied ❌<br>Invalid PIN
-        </h2>`;
-      throw new Error("Access denied");
+  <title>Shop Dashboard</title>
+  <style>
+    body { font-family: "Segoe UI", sans-serif; padding: 20px; background: #f6f8fa; color: #222; }
+    h1 { margin-bottom: 15px; }
+    .shop-info { 
+      margin-bottom: 20px; 
+      padding: 15px; 
+      background: #fff; 
+      border-radius: 8px; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 20px; 
+      align-items: center;
     }
-  </script>
+    .shop-info div { font-weight: bold; }
+    .shop-info button { 
+      padding: 8px 15px; 
+      background: #0077cc; 
+      color: #fff; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer; 
+    }
+    table { 
+      border-collapse: collapse; 
+      width: 100%; 
+      margin-top: 10px; 
+      background: #fff; 
+      border-radius: 8px; 
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #0077cc; color: #fff; font-weight: 600; position: sticky; top: 0; z-index: 1; }
+    tr:nth-child(even) { background: #f2f2f2; }
+    tr.latest { background: #ffeeba; font-weight: bold; }
+    #totalsRow { font-weight: bold; background: #e0e0e0; }
+    #loadingSpinner { font-weight: bold; margin-bottom: 10px; }
+    @media (max-width: 768px) {
+      .shop-info { flex-direction: column; align-items: flex-start; }
+      table { font-size: 12px; }
+    }
+  </style>
 </head>
-
 <body>
-  <h2>Shops Balance Summary</h2>
+  <h1 id="shopTitle">Shop Dashboard</h1>
+  <div id="loadingSpinner">Loading data...</div>
 
-  <!-- Toolbar (Filters & Actions) -->
-  <div class="toolbar">
-    <select id="leaderFilter">
-      <option value="ALL">All Team Leaders</option>
-    </select>
-
-    <input type="text" id="searchInput" placeholder="🔍 Search Shop Name..." />
-
-    <button id="exportBtn">💾 Export CSV</button>
-    <button id="resetBtn" style="background:#888;">🔄 Reset</button>
+  <div class="shop-info" id="shopInfo">
+    <div>Shop Name: <span id="infoShopName">-</span></div>
+    <div>Security Deposit: <span id="infoSecDeposit">-</span></div>
+    <div>Bring Forward Balance: <span id="infoBFBalance">-</span></div>
+    <div>Team Leader: <span id="infoTeamLeader">-</span></div>
+    <div>
+      <button id="viewDailyBtn">📄 View Daily Transactions</button>
+    </div>
   </div>
 
-  <!-- Link to open filtered dashboard in new tab -->
-  <div id="teamDashboardLink"></div>
+  <table border="1" id="transactionTable">
+    <thead>
+      <tr>
+        <th>DATE</th>
+        <th>DEPOSIT</th>
+        <th>WITHDRAWAL</th>
+        <th>IN</th>
+        <th>OUT</th>
+        <th>SETTLEMENT</th>
+        <th>SPECIAL PAYMENT</th>
+        <th>ADJUSTMENT</th>
+        <th>SEC DEPOSIT</th>
+        <th>DP COMM</th>
+        <th>WD COMM</th>
+        <th>ADD COMM</th>
+        <th>BALANCE</th>
+      </tr>
+    </thead>
+    <tbody id="transactionTableBody"></tbody>
+    <tfoot>
+      <tr id="totalsRow">
+        <td>TOTAL</td>
+      </tr>
+    </tfoot>
+  </table>
 
-  <!-- Table Container -->
-  <div id="tableContainer">
-    <table id="shopTable">
-      <thead><tr id="tableHeader"></tr></thead>
-      <tbody id="tableBody"></tbody>
-    </table>
-  </div>
-
-  <!-- Pagination Controls -->
-  <div id="pagination">
-    <button id="prevPage" disabled>⬅ Prev</button>
-    <span id="pageInfo" style="margin:0 12px;">Page 1</span>
-    <button id="nextPage">Next ➡</button>
-  </div>
-
-  <!-- Totals Summary -->
-  <div id="totalsRow"></div>
-
-  <!-- Your dashboard logic -->
-  <script src="dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="shop_dashboard.js"></script>
 </body>
 </html>
