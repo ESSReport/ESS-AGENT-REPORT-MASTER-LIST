@@ -6,7 +6,7 @@ const DP_URL = "https://opensheet.elk.sh/126HVa6SNG1vUz6F7_PKltLy_0ieZvDFyxjMGcc
 const B2B_URL = "https://opensheet.elk.sh/126HVa6SNG1vUz6F7_PKltLy_0ieZvDFyxjMGcc6Eu1E/B2B";
 
 // Backup_Index URL
-const BACKUP_INDEX_URL = "https://opensheet.elk.sh/126HVa6SNG1vUz6F7_PKltLy_0ieZvDFyxjMGcc6Eu1E/Backup_Index";
+const BACKUP_INDEX_URL = "https://opensheet.elk.sh/<BACKUP_INDEX_SHEET_ID>/Backup_Index";
 
 // ------------------------------
 // Shop Name from URL
