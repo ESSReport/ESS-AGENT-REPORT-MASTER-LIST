@@ -104,7 +104,7 @@ function buildSummary(data){
     summary[shop]["RUNNING BALANCE"] = 
       (summary[shop]["BRING FORWARD BALANCE"]||0) +
       (summary[shop]["TOTAL DEPOSIT"]||0) - (summary[shop]["TOTAL WITHDRAWAL"]||0) +
-      (summary[shop]["INTERNAL TRANSFER IN"]||0) - (summary[shop]["INTERNAL TRANSFER  OUT"]||0) -
+      (summary[shop]["INTERNAL TRANSFER IN"]||0) - (summary[shop]["INTERNAL TRANSFER OUT"]||0) -
       (summary[shop]["SETTLEMENT"]||0) - (summary[shop]["SPECIAL PAYMENT"]||0) +
       (summary[shop]["ADJUSTMENT"]||0) - (summary[shop]["DP COMM"]||0) -
       (summary[shop]["WD COMM"]||0) - (summary[shop]["ADD COMM"]||0);
@@ -480,3 +480,4 @@ if (leaderParam) {
     alert("Access denied or failed to load data.");
   }
 });
+
