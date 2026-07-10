@@ -62,7 +62,7 @@ const TL_PINS = {
    "TL-RIPAN": "943516",
    "TL-SAGOR": "983566",
    "TL-NURNOBY": "983721",
-   "TL-ROBI": "963623",
+   "TL-MOTIN": "963623",
    "TL-RAY": "977723",
    "TL-CHAK": "978423",
    "TL-ISMAIL": "976613",
