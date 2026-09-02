@@ -21,7 +21,7 @@ const TL_PINS = {
   "TL-RAIRA": "872557",
   "TL-NOMIL": "872229",
   "TL-LASAR": "872659",
-  "TL-KCAJ": "872454",
+  "TL-KCAJ": "20252026",
   "TL-URMAK": "872428",
   "TL-VORUOS": "872922",
   "TL-NAJUS": "872755",
